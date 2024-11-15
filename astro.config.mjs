@@ -5,7 +5,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: "https://utopia5327.github.io",
+  site: "https://utopia5327.github.io/astro-maplibre-template",
   base: "astro-maplibre-template",
   integrations: [mdx(), sitemap(), tailwind()],
 });
