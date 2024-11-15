@@ -18,7 +18,7 @@
     fill-opacity: 0.4
   mouseEvent:
     - type: 'click'
-        content:
+      content:
         - h1:
           - str: 'Energy Use Information'
         - p:
