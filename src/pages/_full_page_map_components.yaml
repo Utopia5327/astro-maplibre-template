@@ -1,32 +1,67 @@
-- id: 'bikes'
-  label: 'Bike Lanes'
-  toggle: true  
-  visible: false
+- id: 'nyc_energy_use_by_zip'
+  label: 'NYC Energy Use by Zip Code'
+  toggle: True
+  visible: True
   data-type: 'geojson'
-  layer-type: 'line'
-  url: 'https://data.cityofnewyork.us/resource/mzxg-pwib.geojson?$limit=10000'
+  layer-type: 'fill'
+  url: 'public/data/energyusebyzipcodenew.geojson'  # Update with actual file path or URL
   paint:
-    line-color: '#000000'
-    line-width: 3
+    fill-color:
+      property: 'Values '
+      stops:
+        - [0, '#ffffb2']                # Light yellow for lowest values
+        - [680679.03, '#fecc5c']        # Yellow-orange for low-medium values
+        - [2010885.08, '#fd8d3c']       # Orange for medium values
+        - [4377161.01, '#f03b20']       # Red-orange for medium-high values
+        - [18574640.54, '#bd0026']      # Dark red for highest values
 
-- id: 'pizza'
-  label: 'Pizza Places'
-  toggle: true
-  visible: true
-  data-type: 'geojson'
-  layer-type: 'circle'
-  url: 'https://data.cityofnewyork.us/resource/43nn-pn8j.geojson?cuisine_description=Pizza&$limit=10000'
-  paint:
-    circle-color: '#ff0000'
-    circle-radius: 5
+    fill-opacity: 0.4
   mouseEvent:
-    - type: "click"
+    - type: 'click'
       content:
         - h1:
-            - str: "Feature Info"
+          - str: 'Energy Use Information'
         - p:
-            - str: "Description"
+          - str: 'Zip Code: '
+          - property: 'ZCTA5CE00'  # Zip Code Field
+          - else: 'N/A'
         - p:
-            - str: "Name: "
-            - property: "dba"
-              else: "N/A"
+          - str: 'Energy Use: '
+          - property: 'energy use file_real'
+          - else: 'N/A'
+
+# - id: 'nyc_energy_use_by_BBL'
+#   label: 'NYC Energy Use by BBL'
+#   toggle: True
+#   visible: True
+#   data-type: 'geojson'
+#   layer-type: 'fill'
+#   url: 'public\data\ENERGYBYBBL.geojson'  # Update with actual file path or URL
+#   paint:
+#     fill-color:
+#       property: 'basenergyfileFINAL_ElectricityCleanDF'
+#       stops:
+#         - [0, '#ffffb2']                 # Light yellow for lowest values
+#         - [2006777.80, '#fed976']        # Yellow-orange for low-medium values
+#         - [7700875.20, '#feb24c']        # Orange for medium values
+#         - [19867995.60, '#fd8d3c']       # Dark orange for medium-high values
+#         - [49036503.50, '#f03b20']       # Red for high values
+#         - [144746407.00, '#bd0026']      # Dark red for highest values
+
+#     fill-opacity: 0.4
+#   mouseEvent:
+#     - type: 'click'
+#       content:
+#         - h1:
+#             - str: 'Energy Use Information'
+#         - p:
+#             - str: 'Zip Code: '
+#             - property: 'ZCTA5CE00'  # Zip Code Field
+#             - else: 'N/A'
+#         - p:
+#             - str: 'Energy Use (Grid Purchase): '
+#             - property: 'basenergyfileFINAL_ElectricityCleanDF'
+#             - else: 'N/A'
+
+
+
